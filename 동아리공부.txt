@@ -1,0 +1,102 @@
+#랜덤 문제 풀이 
+import random
+
+a= random. randint(1,30)#1~30까지 무작위로 설정
+b= random. randint(1,30)
+
+list = ["+","-","*","//"]
+z= random. randint (0, 3)# 위에 리스트에서 하나를 뽑아서 설정
+print(a,list[z],b,"=")
+x= int(input()) # 프린트해서 나온문제의 답을 받아들이는곳
+
+flag = 0 
+if z==0: 
+    if a + b == x:
+        flag=1 # "+,-,*,// 중 하나라도 결과값이 맞으면 맞다고 인식하기 때문에 분류해주기 위해서
+elif z==1:
+    if a - b == x:
+        flag=1
+elif z==2:
+    if a * b == x:
+        flag=1
+elif z==3:
+    if a // b == x:
+        flag=1  
+if flag==0:
+    print("탈락")
+else:
+    print("정답")
+#로그인 프로그램
+
+id = "K-hackers" #id 를 설정한다
+pw = "1q2w3e4r"  #pw 를 설정한다
+
+id = input("아이디를 입력하십시오") #로그인 할 아이디를 입력한다 
+pw = input("비밀번호를 입력하십시오")# 로그인 할 비밀번호를 입력한다 0
+
+if id=="K-hackers": #아이디가 와 비밀번호가 맞으면 로그인이된다
+    if pw=="1q2w3e4r":
+        print("로그인 되었습니다")
+else :    
+    print("찾을수 없는 정보입니다") #아이디 비번이 맞지 않으면 로그인이 되지 않는다 
+
+#거스름돈 계산기
+
+m=int(input("투입할 돈"))
+i=int(input("물건 값"))
+a= m - i          #내가 투입한 금액에서 물건 값을 빼서 거스름 돈을 구한다
+print("거스름 돈:",a)
+c10000s= a//10000 
+a=a%10000  #거스름돈에서 10000원 으로 나누어떨어지는 것만 받는
+c5000s= a//5000
+a=a%5000   #거스름돈에서 5000원으로 나누어 떨어지는것만 받는다
+c1000s= a//1000
+a=a%1000
+c500s= a//500
+a=a%500
+c100s= a//100
+a=a%100
+c10s= a//10
+print("10000원 지폐의 개수:",c10000s) # 위에 지정해노은 거스름 돈으로 나온 결과값을 받아오는것
+print("5000원 지폐의 개수:",c5000s)
+print("1000원 지폐의 개수:",c1000s)
+print("500원 동전의 개수:",c500s)
+print("100원 동전의 개수:",c100s)
+print("10원 동전의 개수:",c10s)
+
+
+#복리이자계산기
+y = 0
+b = int(input("저금할 금액을 너으세여")) 
+z = int(input("얼마까지 생각하세여"))
+e = float(input("복리 이자률이 몇입니까")) # float를 쓴 이유는 정수가 아닌 것을 받기위해 
+while b <=z:
+    y=y+1
+    interest =b *e # 저금할 금액에 복리이자률을 곱하는것 
+    b =b + interest 저금할 금액에 interest 나온값을 더하구 기존에 저금한 가격과 비교하느것
+print(y,"년이 걸립니다")
+
+
+#암호화 생성기
+plain_text = "K-hackers"
+
+encrypted_text ="" #암호문이다
+for c in plain_text: # 평문의 모든 글자에  반복하는 것 
+    x = ord(c)  #글자의 코드 값을 구하는 것 
+    x= x + 1   #코드 값을 1 증가시켜주는 것이다 
+    cc = chr(x) # 증가된 코드 값에 해당하는 문자를 계산하는 것 
+    encrypted_text = encrypted_text + cc # 암호문에 추가한다 
+print(encrypted_text)
+
+
+#복호화 시키는 기계
+encrypted_text = "L.ibdlfst" # 암호문을 받아들이는것
+
+plain_text ="" 
+for c in encrypted_text: #암호문의 모든 글자에 반복한다
+    x = ord(c) #글자의 코드 값을 구하는 것 
+    x=x-1 #앞에 코드 값에 1을 증가시킨 것 처럼 복호화 시키기위해 1을 빼준다
+    cc = chr(x) #1감소된 코드 값에 해당하는 문자를 계산한다 
+    plain_text = plain_text +cc # 맨위에 있는 평문에 추가한다
+print(plain_text) # 평문에 받아온 것을 출력한다 
+
